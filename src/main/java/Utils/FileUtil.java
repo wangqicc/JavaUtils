@@ -14,7 +14,7 @@ public class FileUtil {
      * @throws IOException    文件读取异常
      */
     public static List<String> readLines(String filepath, String encoding) throws IOException {
-        List<String> lines = new ArrayList<>();
+        List<String> lines = new ArrayList<String>();
         File file = new File(filepath);
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding));
         while (reader.ready()) {

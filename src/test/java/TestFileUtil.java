@@ -8,7 +8,7 @@ public class TestFileUtil {
 
     public static void main(String[] args) throws IOException {
         String filename = "src/test/data/test.txt";
-        List<String> lines = new ArrayList<>();
+        List<String> lines = new ArrayList<String>();
         lines.add("wq");
         lines.add("xsl");
 
