@@ -10,28 +10,28 @@ public class RegexUtil {
     private static final Pattern pattern2 = Pattern.compile("^[^\\x00-\\xff]+$");
 
     /**
-     * 检测字符串中是否含有指定模式
+     * 判断字符串是否符合正则表达式
      * @param str        字符串
-     * @param pattern    模式
-     * @return           是否含有指定模式
+     * @param pattern    正则表达式
+     * @return           返回是否匹配的布尔值
      */
     public static boolean isMatch(String str, String pattern) {
         return Pattern.compile(pattern).matcher(str).find();
     }
 
     /**
-     * 检测是否是中文字符
+     * 判断字符串是否是中文
      * @param str        字符串
-     * @return           是否为中文字符
+     * @return           返回是否匹配的布尔值
      */
     public static boolean isChinese(String str) {
         return pattern1.matcher(str).matches();
     }
 
     /**
-     * 检测是否是双字节字符
+     * 判断字符串是否是双字节字符（占两个字节的字符）
      * @param str        字符串
-     * @return           是否为双字节字符（占两个字节）
+     * @return           返回是否匹配的布尔值
      */
     public static boolean isDoubleByte(String str) {
         return pattern2.matcher(str).matches();
