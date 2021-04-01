@@ -3,6 +3,7 @@ package Utils;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpRequestRetryHandler;
+import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -83,6 +84,8 @@ public class HttpUtil {
                 .setConnectionRequestTimeout(timeout)
                 // 设置响应超时时间
                 .setSocketTimeout(timeout)
+                // 设置缓存格式，建议设置为标准格式 CookieSpecs.STANDARD
+                .setCookieSpec(CookieSpecs.STANDARD)
                 .build();
         // 配置超时回调机制
         HttpRequestRetryHandler retryHandler = new HttpRequestRetryHandler() {
