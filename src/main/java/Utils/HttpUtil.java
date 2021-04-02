@@ -1,7 +1,6 @@
 package Utils;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
@@ -10,7 +9,9 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -18,10 +19,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -90,7 +90,13 @@ public class HttpUtil {
         // 配置超时回调机制
         HttpRequestRetryHandler retryHandler = new HttpRequestRetryHandler() {
             public boolean retryRequest(IOException e, int i, HttpContext httpContext) {
-                return false;
+                // 如果重试次数大于 3、SSL 握手异常、连接超时，则放弃
+                if (i >= 3 || e instanceof SSLException || e instanceof ConnectTimeoutException) {
+                    return false;
+                }
+                // 如果丢失链接、网络超时、请求是幂等的，则重试
+                HttpRequest request = HttpClientContext.adapt(httpContext).getRequest();
+                return e instanceof NoHttpResponseException || e instanceof InterruptedIOException || !(request instanceof HttpEntityEnclosingRequest);
             }
         };
         return HttpClients.custom()
