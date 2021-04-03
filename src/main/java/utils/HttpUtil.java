@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import org.apache.http.*;
 import org.apache.http.client.HttpRequestRetryHandler;
@@ -20,7 +20,6 @@ import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLHandshakeException;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -59,8 +58,8 @@ public class HttpUtil {
 
     /**
      * 将字典类型的参数转换为 NameValuePair 数组类型的参数列表
-     * @param params        字典类型参数
-     * @return              NameValuePair 数组
+     * @param params 字典类型参数
+     * @return NameValuePair 数组
      */
     private static List<NameValuePair> getNameValueParams(Map<String, String> params) {
         List<NameValuePair> paramList = new LinkedList<NameValuePair>();
@@ -72,8 +71,8 @@ public class HttpUtil {
 
     /**
      * 建立 HTTP 连接
-     * @param timeout        超时时间，单位 ms
-     * @return               HTTP 对象
+     * @param timeout 超时时间，单位 ms
+     * @return HTTP 对象
      */
     private static CloseableHttpClient getHttpClient(Integer timeout) {
         // 配置请求参数
@@ -108,13 +107,13 @@ public class HttpUtil {
 
     /**
      * 获取 get 方式的 html 页面内容
-     * @param url        页面链接
-     * @param params     请求参数
-     * @param headers    请求头
-     * @param timeout    超时时间
-     * @param isStream   是否以文件流形式获取
-     * @return           返回的页面内容
-     * @throws URISyntaxException        链接格式异常
+     * @param url 页面链接
+     * @param params 请求参数
+     * @param headers 请求头
+     * @param timeout 超时时间
+     * @param isStream 是否以文件流形式获取
+     * @return 返回的页面内容
+     * @throws URISyntaxException 链接格式异常
      */
     public static String getHtml(String url, Map<String, String> params, Map<String, String> headers, Integer timeout, boolean isStream) throws URISyntaxException {
 
@@ -138,13 +137,13 @@ public class HttpUtil {
 
     /**
      * 获取 post 方式的 html 页面内容
-     * @param url        页面链接
-     * @param params     请求参数
-     * @param headers    请求头
-     * @param timeout    超时时间
-     * @param isStream   是否以文件流形式获取
-     * @return           返回页面内容
-     * @throws UnsupportedEncodingException        编码异常
+     * @param url 页面链接
+     * @param params 请求参数
+     * @param headers 请求头
+     * @param timeout 超时时间
+     * @param isStream 是否以文件流形式获取
+     * @return 返回页面内容
+     * @throws UnsupportedEncodingException 编码异常
      */
     public static String postHtml(String url, Map<String, String> params, Map<String, String> headers, Integer timeout, boolean isStream) throws UnsupportedEncodingException {
 
@@ -166,11 +165,11 @@ public class HttpUtil {
 
     /**
      * 返回请求结果
-     * @param httpRequest        HTTP 请求
-     * @param timeout            超时时间
-     * @param isStream           是否以文件流形式获取
-     * @param method             采用的方式 GET or POST
-     * @return                   请求的内容
+     * @param httpRequest HTTP 请求
+     * @param timeout 超时时间
+     * @param isStream 是否以文件流形式获取
+     * @param method 采用的方式 GET or POST
+     * @return 请求的内容
      */
     private static String getResult(HttpRequestBase httpRequest, Integer timeout, boolean isStream, String method) {
         // 响应结果

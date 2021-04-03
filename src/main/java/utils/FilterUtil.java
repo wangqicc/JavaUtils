@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import java.util.regex.Pattern;
 
@@ -6,8 +6,8 @@ public class FilterUtil {
 
     /**
      * 过滤 HTML 标签
-     * @param str        字符串
-     * @return           过滤后的字符串
+     * @param str 字符串
+     * @return 过滤后的字符串
      */
     public static String filterContent(String str) {
         // 多个空白字符替换为单个
@@ -40,8 +40,8 @@ public class FilterUtil {
 
     /**
      * 将文件名中的 \"/:*?<>| 替换为 _
-     * @param str        字符串
-     * @return           替换后的字符串
+     * @param str 字符串
+     * @return 替换后的字符串
      */
     public static String filterFilename(String str) {
         return Pattern.compile("[\\\\\"/:*?<>|]").matcher(str).replaceAll("_");

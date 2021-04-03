@@ -1,4 +1,4 @@
-import Utils.RegexUtil;
+import utils.RegexUtil;
 
 public class TestRegexUtil {
 

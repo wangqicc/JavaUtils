@@ -1,4 +1,4 @@
-import Utils.HttpUtil;
+import utils.HttpUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
