@@ -1,5 +1,6 @@
-import utils.FilterUtil;
 import utils.HttpUtil;
+import utils.RegexUtil;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,7 +20,7 @@ public class TestJsoup {
         System.out.println(htmlDoc.title());
         Elements elements = htmlDoc.select("div[class=\"article-body\"]");
         for (Element element : elements) {
-            System.out.println(FilterUtil.filterContent(element.html()));
+            System.out.println(RegexUtil.filterContent(element.html()));
         }
 
         // 从链接中解析 HTML
