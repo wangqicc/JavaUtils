@@ -8,6 +8,39 @@ public class RegexUtil {
     private static final Pattern pattern1 = Pattern.compile("^[\u4e00-\u9fa5]+$");
     // 匹配双字节字符
     private static final Pattern pattern2 = Pattern.compile("^[^\\x00-\\xff]+$");
+    // 匹配整数
+    private static final Pattern integerPattern = Pattern.compile("(-[1-9][0-9]*)|(0|[1-9][0-9]*)");
+    // 匹配数字（小数|整数）
+    private static final Pattern digitalPattern = Pattern.compile("-?(0|[1-9][0-9]*)\\.\\d+|(-[1-9][0-9]*)|(0|[1-9][0-9]*)");
+    // 匹配链接
+    private static final Pattern urlPattern = Pattern.compile("(https?:)?//?([a-zA-Z0-9._@~-]+/)*([a-zA-Z0-9._@~&?:=%\\u4E00-\\u9FA5-]+)");
+
+    /**
+     * 判断字符串是否是整数
+     * @param str 字符串
+     * @return 返回是否匹配的布尔值
+     */
+    public static boolean isInteger(String str) {
+        return integerPattern.matcher(str).matches();
+    }
+
+    /**
+     * 判断字符串是否是数字（小数|整数）
+     * @param str 字符串
+     * @return 返回是否匹配的布尔值
+     */
+    public static boolean isDigital(String str) {
+        return digitalPattern.matcher(str).matches();
+    }
+
+    /**
+     * 判断字符串是否是链接
+     * @param str 字符串
+     * @return 返回是否匹配的布尔值
+     */
+    public static boolean isUrl(String str) {
+        return urlPattern.matcher(str).matches();
+    }
 
     /**
      * 判断字符串是否符合正则表达式
